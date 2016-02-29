@@ -4,8 +4,8 @@ import matplotlib.patches as patches
 res_x = 1
 res_y = 1
 
-p0 = (0, 0)  # (x, y)
-p1 = (15, 18)
+p0 = (15, 0)  # (x, y)
+p1 = (0, 18)
 
 dx = (p1[0] - p0[0]) / res_x
 dy = (p1[1] - p0[1]) / res_y
@@ -28,10 +28,13 @@ err_y = dy
 x = p0[0]
 y = p0[1]
 
+step_x = (sx - res_x) / 2
+step_y = (sy - res_y) / 2
+
 visited_cells = []
 
 while x != p1[0] or y != p1[1]:
-    visited_cells.append((x, y))
+    visited_cells.append((x + step_x, y + step_y))
 
     if err_x > err_y:
         x += sx
@@ -59,5 +62,10 @@ for cell in visited_cells:
     )
 
 ax.plot([p0[0], p1[0]], [p0[1], p1[1]], color='red')
+
+s_min = min(min(p0), min(p1))
+s_max = max(max(p0), max(p1))
+ax.xaxis.set_ticks(range(s_min, s_max + res_x, res_x))
+ax.yaxis.set_ticks(range(s_min, s_max + res_y, res_y))
 
 plt.show()
