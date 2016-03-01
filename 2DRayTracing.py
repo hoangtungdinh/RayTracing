@@ -4,8 +4,8 @@ import matplotlib.patches as patches
 res_x = 1
 res_y = 1
 
-p0 = (15, 0)  # (x, y)
-p1 = (0, 18)
+p0 = (1, 3)  # (x, y)
+p1 = (1, 1)
 
 dx = (p1[0] - p0[0]) / res_x
 dy = (p1[1] - p0[1]) / res_y

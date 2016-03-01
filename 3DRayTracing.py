@@ -8,8 +8,8 @@ def main():
     res_y = 1
     res_z = 1
 
-    p0 = (9, 15, 14)  # (x, y, z)
-    p1 = (0, 0, 0)
+    p0 = (4, 3, 2)  # (x, y, z)
+    p1 = (10, 11, 12)
 
     dx = (p1[0] - p0[0]) / res_x
     dy = (p1[1] - p0[1]) / res_y
@@ -33,6 +33,20 @@ def main():
     else:
         sz = res_z
 
+    step_x = (sx - res_x) / 2
+    step_y = (sy - res_y) / 2
+    step_z = (sz - res_z) / 2
+
+    if dx == 0:
+        dx = 1
+        sx = 0
+    if dy == 0:
+        dy = 1
+        sy = 0
+    if dz == 0:
+        dz = 1
+        sz = 0
+
     err_x = dx * dy + dx * dz
     err_y = dy * dx + dy * dz
     err_z = dz * dx + dz * dy
@@ -40,10 +54,6 @@ def main():
     x = p0[0]
     y = p0[1]
     z = p0[2]
-
-    step_x = (sx - res_x) / 2
-    step_y = (sy - res_y) / 2
-    step_z = (sz - res_z) / 2
 
     visited_cells = []
 
@@ -99,7 +109,7 @@ def main():
             err_x += dx * dy
             err_y += dy * dx
 
-    # visited_cells = [(0, 0, 0), (0, 0, 1), (0, 1, 1), (0, 1, 2)]
+    print(visited_cells)
 
     fig = plt.figure()
     ax = fig.gca(projection='3d')
